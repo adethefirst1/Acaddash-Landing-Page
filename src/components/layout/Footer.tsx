@@ -22,13 +22,13 @@ export function Footer() {
             className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8 text-sm"
           >
             {FOOTER_LINKS.map((link) => (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
                 className="transition-colors duration-150 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-bright rounded-sm"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
 

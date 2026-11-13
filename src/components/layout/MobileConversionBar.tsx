@@ -72,16 +72,18 @@ export function MobileConversionBar() {
   return (
     <div
       aria-hidden={!isVisible}
+      inert={!isVisible ? true : undefined}
       className={`fixed bottom-0 left-0 right-0 z-40 md:hidden bg-white/95 backdrop-blur-md border-t border-border px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] shadow-[0_-4px_24px_rgba(20,45,70,0.1)] transition-all duration-300 ease-out ${
         isVisible
-          ? "translate-y-0 opacity-100 pointer-events-auto"
-          : "translate-y-full opacity-0 pointer-events-none"
+          ? "translate-y-0 opacity-100 pointer-events-auto visible"
+          : "translate-y-full opacity-0 pointer-events-none invisible"
       }`}
     >
       <Button
         href={APP_URL}
         variant="primary"
         size="md"
+        tabIndex={isVisible ? 0 : -1}
         className="w-full text-center justify-center py-3 text-sm font-semibold shadow-md"
       >
         Get the app

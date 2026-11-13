@@ -169,7 +169,7 @@ export function Nav() {
             aria-label="Main Navigation"
           >
             {NAV_LINKS.map((link) => {
-              const targetId = link.href.replace("#", "") as SectionId;
+              const targetId = link.href.replace("/#", "").replace("#", "") as SectionId;
               const isActive = activeSection === targetId;
 
               return (
@@ -251,7 +251,7 @@ export function Nav() {
         >
           <div className="px-6 py-6 flex flex-col gap-2">
             {NAV_LINKS.map((link, idx) => {
-              const targetId = link.href.replace("#", "") as SectionId;
+              const targetId = link.href.replace("/#", "").replace("#", "") as SectionId;
               const isActive = activeSection === targetId;
 
               return (

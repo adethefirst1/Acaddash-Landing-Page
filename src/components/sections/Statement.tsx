@@ -48,7 +48,7 @@ function Word({
   const color = useTransform(
     progress,
     [start, end],
-    ["#B4C0CC", "#142D46"]
+    ["#7A90A3", "#142D46"]
   );
 
   if (shouldReduceMotion) {
