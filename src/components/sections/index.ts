@@ -4,3 +4,6 @@ export { CalculatorFeature } from "./CalculatorFeature";
 export { SimulatorFeature } from "./SimulatorFeature";
 export { PlannerFeature } from "./PlannerFeature";
 export { AdvisorFeature } from "./AdvisorFeature";
+export { Details } from "./Details";
+export { NewStudents } from "./NewStudents";
+export { FinalCta } from "./FinalCta";

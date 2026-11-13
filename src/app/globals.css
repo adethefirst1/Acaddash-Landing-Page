@@ -175,6 +175,20 @@ h6 {
   }
 }
 
+/* 70s slow rotation for decorative dashed ring */
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-slow {
+  animation: spinSlow 70s linear infinite;
+}
+
 .float-bob-left {
   animation: floatBobLeft 6s ease-in-out infinite;
 }

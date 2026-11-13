@@ -7,6 +7,9 @@ import {
   SimulatorFeature,
   PlannerFeature,
   AdvisorFeature,
+  Details,
+  NewStudents,
+  FinalCta,
 } from "@/components/sections";
 
 export default function Home() {
@@ -20,7 +23,9 @@ export default function Home() {
         <SimulatorFeature />
         <PlannerFeature />
         <AdvisorFeature />
-        <section id="download" aria-label="Download Acaddash" />
+        <Details />
+        <NewStudents />
+        <FinalCta />
       </main>
       <Footer />
     </>

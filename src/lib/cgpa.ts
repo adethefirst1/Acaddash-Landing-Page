@@ -127,3 +127,4 @@ export function feasibility(reqAvg: number): Feasibility {
 export function formatGpa(val: number): string {
   return (Math.round(val * 100) / 100).toFixed(2);
 }
+
