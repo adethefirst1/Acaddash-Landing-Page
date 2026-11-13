@@ -4,7 +4,7 @@
   --navy: #142D46;
   --navy-deep: #0F2236;
   --ink: #0B1B2B;
-  --teal: #187F79;
+  --teal: #157771; /* Adjusted from #187F79 to #157771 for WCAG AA (>= 4.5:1) on mint */
   --teal-bright: #4CC3BB;
   --mint: #E7F1F0;
   --tint: #F1F6F6;
@@ -19,7 +19,7 @@
   --color-navy: #142D46;
   --color-navy-deep: #0F2236;
   --color-ink: #0B1B2B;
-  --color-teal: #187F79;
+  --color-teal: #157771;
   --color-teal-bright: #4CC3BB;
   --color-mint: #E7F1F0;
   --color-tint: #F1F6F6;
@@ -34,6 +34,7 @@
 }
 
 html {
+  color-scheme: light;
   scroll-behavior: smooth;
 }
 
@@ -53,6 +54,7 @@ h5,
 h6 {
   font-family: var(--font-heading);
   letter-spacing: -0.025em;
+  text-wrap: balance;
 }
 
 /* Simulator synchronized toggle animations (pure CSS, no JS) */

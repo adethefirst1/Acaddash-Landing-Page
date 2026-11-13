@@ -11,7 +11,7 @@ export function FinalCta() {
   return (
     <section
       id="download"
-      className="relative py-[100px] lg:py-[140px] px-6 bg-navy-deep text-white text-center overflow-hidden border-t border-navy"
+      className="relative py-[100px] lg:py-[140px] px-6 bg-navy-deep text-white text-center overflow-hidden border-t border-navy scroll-mt-20"
       aria-label="Download Acaddash"
     >
       {/* Large soft radial teal-bright glow centered behind text */}

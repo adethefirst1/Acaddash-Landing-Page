@@ -117,9 +117,9 @@ export function HomeScreen({
               type="button"
               disabled={!isInteractive}
               onClick={() => onGradeCycle?.(c.code)}
-              className={`w-6 h-6 rounded-[6px] bg-navy text-white font-heading font-bold text-[11px] flex items-center justify-center transition-all ${
+              className={`relative after:absolute after:-inset-2.5 after:content-[''] w-6 h-6 rounded-[6px] bg-navy text-white font-heading font-bold text-[11px] flex items-center justify-center transition-all ${
                 isInteractive
-                  ? "cursor-pointer hover:scale-105 active:scale-95 hover:bg-navy-deep ring-2 ring-transparent hover:ring-teal/30"
+                  ? "cursor-pointer hover:scale-105 active:scale-95 hover:bg-navy-deep ring-2 ring-transparent hover:ring-teal/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal"
                   : "cursor-default"
               }`}
               title={isInteractive ? "Click to cycle grade" : undefined}

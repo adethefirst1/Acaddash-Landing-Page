@@ -369,7 +369,7 @@ export function Details() {
   return (
     <section
       id="details"
-      className="pt-20 sm:pt-24 lg:pt-[120px] pb-5 sm:pb-8 lg:pb-10 px-5 sm:px-12 lg:px-20 bg-white text-navy overflow-hidden"
+      className="pt-20 sm:pt-24 lg:pt-[120px] pb-5 sm:pb-8 lg:pb-10 px-5 sm:px-12 lg:px-20 bg-white text-navy overflow-hidden scroll-mt-20"
       aria-label="Features and rules"
     >
       <div className="max-w-6xl mx-auto">

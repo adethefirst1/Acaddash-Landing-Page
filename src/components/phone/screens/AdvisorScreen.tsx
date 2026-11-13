@@ -85,9 +85,9 @@ export function AdvisorScreen({
               type="button"
               disabled={!isInteractive || isTyping}
               onClick={() => onChipClick?.(chip)}
-              className={`px-2.5 py-1 rounded-full border border-[#D5DEE7] bg-white text-[10px] text-navy font-medium shadow-xs leading-none transition-all ${
+              className={`relative after:absolute after:-inset-2 after:content-[''] px-2.5 py-1 rounded-full border border-[#D5DEE7] bg-white text-[10px] text-navy font-medium shadow-xs leading-none transition-all ${
                 isInteractive && !isTyping
-                  ? "cursor-pointer hover:bg-mint/50 active:scale-95 hover:border-teal/40"
+                  ? "cursor-pointer hover:bg-mint/50 active:scale-95 hover:border-teal/40 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-teal"
                   : "cursor-default opacity-80"
               }`}
             >

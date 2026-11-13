@@ -4,7 +4,7 @@ import { FOOTER_LINKS } from "@/lib/config";
 
 export function Footer() {
   return (
-    <footer className="bg-ink text-subtle border-t border-navy-deep">
+    <footer className="bg-ink text-subtle border-t border-navy-deep pb-[calc(5rem+env(safe-area-inset-bottom))] md:pb-0">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-16">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
           {/* Logo */}

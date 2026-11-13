@@ -72,9 +72,9 @@ export function SimulatorScreen({
             type="button"
             disabled={!isInteractive}
             onClick={() => onTargetChange?.(-0.05)}
-            className={`w-7 h-7 rounded-full border border-[#E6ECF1] flex items-center justify-center text-navy font-bold text-[14px] leading-none transition-all ${
+            className={`relative after:absolute after:-inset-2 after:content-[''] w-7 h-7 rounded-full border border-[#E6ECF1] flex items-center justify-center text-navy font-bold text-[14px] leading-none transition-all ${
               isInteractive
-                ? "cursor-pointer hover:bg-tint active:scale-90"
+                ? "cursor-pointer hover:bg-tint active:scale-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal"
                 : "cursor-default"
             }`}
             aria-label="Decrease target"
@@ -88,9 +88,9 @@ export function SimulatorScreen({
             type="button"
             disabled={!isInteractive}
             onClick={() => onTargetChange?.(0.05)}
-            className={`w-7 h-7 rounded-full border border-[#E6ECF1] flex items-center justify-center text-navy font-bold text-[14px] leading-none transition-all ${
+            className={`relative after:absolute after:-inset-2 after:content-[''] w-7 h-7 rounded-full border border-[#E6ECF1] flex items-center justify-center text-navy font-bold text-[14px] leading-none transition-all ${
               isInteractive
-                ? "cursor-pointer hover:bg-tint active:scale-90"
+                ? "cursor-pointer hover:bg-tint active:scale-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal"
                 : "cursor-default"
             }`}
             aria-label="Increase target"
@@ -197,11 +197,11 @@ export function SimulatorScreen({
                       type="button"
                       disabled={!isInteractive}
                       onClick={() => onGradeSelect?.(course.code, grade)}
-                      className={`w-5 h-5 rounded-[4px] text-[10px] font-bold flex items-center justify-center transition-all ${
+                      className={`relative after:absolute after:-inset-3 after:content-[''] w-5 h-5 rounded-[4px] text-[10px] font-bold flex items-center justify-center transition-all ${
                         isSelected
                           ? "bg-navy text-white"
                           : "text-muted hover:bg-tint"
-                      } ${isInteractive ? "cursor-pointer" : "cursor-default"}`}
+                      } ${isInteractive ? "cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-teal" : "cursor-default"}`}
                     >
                       {grade}
                     </button>

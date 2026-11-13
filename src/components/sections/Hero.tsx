@@ -1,12 +1,15 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { useRef } from "react";
+import { motion, useInView, useReducedMotion } from "motion/react";
 import { Button } from "@/components/ui/Button";
 import { Phone } from "@/components/phone/Phone";
 import { HomeScreen } from "@/components/phone/screens/HomeScreen";
 import { APP_URL } from "@/lib/config";
 
 export function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const isHeroInView = useInView(sectionRef, { amount: 0.1 });
   const shouldReduceMotion = useReducedMotion();
 
   // Motion variants with conditional reduced motion
@@ -33,7 +36,11 @@ export function Hero() {
   };
 
   return (
-    <section className="relative overflow-hidden pt-28 sm:pt-32 md:pt-36 bg-gradient-to-b from-bg via-bg to-white border-b border-border/40">
+    <section
+      id="hero"
+      ref={sectionRef}
+      className="relative overflow-hidden pt-28 sm:pt-32 md:pt-36 bg-gradient-to-b from-bg via-bg to-white border-b border-border/40"
+    >
       {/* Soft radial mint/teal glow centered behind the phone */}
       <div
         aria-hidden="true"
@@ -95,10 +102,11 @@ export function Hero() {
           variants={phoneRiseVariant}
           className="relative max-w-[340px] md:max-w-[420px] mx-auto flex justify-center"
         >
-          {/* Desktop Floating Card Left: Projected CGPA 4.33 */}
+          {/* Desktop Floating Card Left: Projected CGPA 4.33 (hidden below 1024px) */}
           <div
             aria-hidden="true"
-            className="hidden md:flex flex-col text-left absolute -left-28 lg:-left-36 top-16 bg-white rounded-[18px] px-4 py-3 border border-[#E6ECF1] shadow-[0_16px_36px_rgba(20,45,70,0.08)] float-bob-left z-20 select-none min-w-[155px]"
+            style={{ animationPlayState: isHeroInView ? "running" : "paused" }}
+            className="hidden lg:flex flex-col text-left absolute -left-28 lg:-left-36 top-16 bg-white rounded-[18px] px-4 py-3 border border-[#E6ECF1] shadow-[0_16px_36px_rgba(20,45,70,0.08)] float-bob-left z-20 select-none min-w-[155px]"
           >
             <span className="text-[11px] text-muted font-medium">
               Projected CGPA
@@ -111,10 +119,11 @@ export function Hero() {
             </span>
           </div>
 
-          {/* Desktop Floating Card Right: Target 4.40 */}
+          {/* Desktop Floating Card Right: Target 4.40 (hidden below 1024px) */}
           <div
             aria-hidden="true"
-            className="hidden md:flex flex-col text-left absolute -right-24 lg:-right-32 top-28 bg-white rounded-[18px] px-4 py-3 border border-[#E6ECF1] shadow-[0_16px_36px_rgba(20,45,70,0.08)] float-bob-right z-20 select-none min-w-[140px]"
+            style={{ animationPlayState: isHeroInView ? "running" : "paused" }}
+            className="hidden lg:flex flex-col text-left absolute -right-24 lg:-right-32 top-28 bg-white rounded-[18px] px-4 py-3 border border-[#E6ECF1] shadow-[0_16px_36px_rgba(20,45,70,0.08)] float-bob-right z-20 select-none min-w-[140px]"
           >
             <span className="text-[11px] text-muted font-medium">Target</span>
             <span className="font-heading font-bold text-[24px] text-navy leading-tight my-0.5">
@@ -125,17 +134,20 @@ export function Hero() {
             </span>
           </div>
 
-          {/* Phone Frame: Scaled on desktop, cropped at bottom, faded with CSS mask on mobile */}
-          <div className="relative overflow-hidden h-[420px] sm:h-[480px] md:h-[540px] flex justify-center w-full [mask-image:linear-gradient(to_bottom,black_65%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_65%,transparent_100%)] md:[mask-image:none] md:[-webkit-mask-image:none]">
-            {/* Desktop Scaled Phone */}
-            <div className="hidden md:block">
+          {/* Decorative Static Phone Frame: aria-hidden="true", Scaled on desktop, cropped at bottom, faded with CSS mask on mobile */}
+          <div
+            aria-hidden="true"
+            className="relative overflow-hidden h-[420px] sm:h-[480px] md:h-[540px] flex justify-center w-full [mask-image:linear-gradient(to_bottom,black_65%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_65%,transparent_100%)] md:[mask-image:none] md:[-webkit-mask-image:none]"
+          >
+            {/* Desktop Scaled Phone (1024px+) */}
+            <div className="hidden lg:block">
               <Phone active="home" scale={1.28}>
                 <HomeScreen />
               </Phone>
             </div>
 
-            {/* Mobile / Tablet Scaled Phone (1.0 scale) */}
-            <div className="block md:hidden">
+            {/* Mobile / Tablet Scaled Phone (1.0 scale below 1024px) */}
+            <div className="block lg:hidden">
               <Phone active="home" scale={1.0}>
                 <HomeScreen />
               </Phone>

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { useReducedMotion } from "motion/react";
 import { Phone } from "@/components/phone/Phone";
 import { HomeScreen } from "@/components/phone/screens/HomeScreen";
 import { SAMPLE_STUDENT, Course } from "@/lib/sampleData";
@@ -47,7 +48,12 @@ export function InteractiveHome({
   const targetValRef = useRef(targetCgpaNum);
   const startTimeRef = useRef<number | null>(null);
 
+  const shouldReduceMotion = useReducedMotion();
+  const effectiveDisplayValue = shouldReduceMotion ? targetCgpaNum : displayValue;
+
   useEffect(() => {
+    if (shouldReduceMotion) return;
+
     targetValRef.current = targetCgpaNum;
     startValRef.current = displayValueRef.current;
     startTimeRef.current = null;
@@ -74,7 +80,7 @@ export function InteractiveHome({
     return () => {
       if (animRef.current) cancelAnimationFrame(animRef.current);
     };
-  }, [targetCgpaNum]);
+  }, [targetCgpaNum, shouldReduceMotion]);
 
   // Notify parent of state changes
   useEffect(() => {
@@ -104,7 +110,7 @@ export function InteractiveHome({
       <Phone active="home" scale={scale}>
         <HomeScreen
           courses={courses}
-          displayCgpa={formatGpa(displayValue)}
+          displayCgpa={formatGpa(effectiveDisplayValue)}
           displayDegreeClass={currentDegreeClass}
           onGradeCycle={handleGradeCycle}
           isInteractive={true}

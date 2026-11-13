@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
-import { motion, useReducedMotion } from "motion/react";
+import { motion, useInView, useReducedMotion } from "motion/react";
 
 const FACTS = [
   "Skips what doesn't apply to you yet",
@@ -11,12 +11,15 @@ const FACTS = [
 ];
 
 export function NewStudents() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { amount: 0.1 });
   const shouldReduceMotion = useReducedMotion();
 
   return (
     <section
       id="new-students"
-      className="pt-20 sm:pt-24 lg:pt-[130px] pb-16 sm:pb-24 lg:pb-[120px] px-6 sm:px-12 lg:px-20 bg-white text-navy overflow-hidden"
+      ref={sectionRef}
+      className="pt-20 sm:pt-24 lg:pt-[130px] pb-16 sm:pb-24 lg:pb-[120px] px-6 sm:px-12 lg:px-20 bg-white text-navy overflow-hidden scroll-mt-20"
     >
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-[90px]">
         {/* Left on desktop: Illustration Container */}
@@ -26,14 +29,18 @@ export function NewStudents() {
             {/* Thin dashed teal-tinted rotating ring (inset -18px) */}
             <div
               aria-hidden="true"
+              style={{ animationPlayState: isInView ? "running" : "paused" }}
               className="absolute -inset-3 sm:-inset-4 lg:-inset-[18px] rounded-full border border-dashed border-teal/35 pointer-events-none spin-slow"
             />
 
             {/* Illustration bobbing gently (6s) */}
-            <div className="relative z-10 float-bob-left flex items-center justify-center">
+            <div
+              style={{ animationPlayState: isInView ? "running" : "paused" }}
+              className="relative z-10 float-bob-left flex items-center justify-center"
+            >
               <Image
                 src="/illustrations/education.svg"
-                alt="New students learning their academic degree path"
+                alt="A student at a desk working toward a goal"
                 width={420}
                 height={420}
                 className="w-[262px] sm:w-[340px] lg:w-[420px] h-auto object-contain select-none"

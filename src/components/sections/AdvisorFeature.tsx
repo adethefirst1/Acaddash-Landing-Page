@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { motion, useReducedMotion } from "motion/react";
+import React, { useRef } from "react";
+import { motion, useInView, useReducedMotion } from "motion/react";
 import { InteractiveAdvisor } from "@/components/phone/interactive/InteractiveAdvisor";
 
 const FACTS = [
@@ -11,12 +11,15 @@ const FACTS = [
 ];
 
 export function AdvisorFeature() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const isInView = useInView(sectionRef, { amount: 0.1 });
   const shouldReduceMotion = useReducedMotion();
 
   return (
     <section
       id="advisor"
-      className="py-20 sm:py-28 lg:py-[110px] px-6 sm:px-12 lg:px-20 bg-navy-deep text-white overflow-hidden"
+      ref={sectionRef}
+      className="py-20 sm:py-28 lg:py-[110px] px-6 sm:px-12 lg:px-20 bg-navy-deep text-white overflow-hidden scroll-mt-20"
     >
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row-reverse items-center justify-between gap-12 lg:gap-[90px]">
         {/* Right on desktop: Text Column (max-w-[470px]) */}
@@ -33,7 +36,7 @@ export function AdvisorFeature() {
           <h2 className="font-heading font-bold text-3xl sm:text-4xl lg:text-[46px] leading-[1.08] tracking-[-0.035em] text-white mb-4">
             The answers nobody gave you in first year.
           </h2>
-          <p className="text-subtle text-base sm:text-lg leading-relaxed mb-8">
+          <p className="text-[#A9BBCB] text-base sm:text-lg leading-relaxed mb-8">
             Ask in plain words. From how GPA works to what to aim for next semester, the advisor answers using your own numbers.
           </p>
 
@@ -69,10 +72,11 @@ export function AdvisorFeature() {
             className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[460px] h-[460px] rounded-full bg-[radial-gradient(circle,rgba(76,195,187,0.22)_0%,rgba(15,34,54,0)_70%)] blur-2xl -z-0"
           />
 
-          {/* Desktop Callout: Ask anything, any time */}
+          {/* Desktop Callout: Ask anything, any time (hidden below 1024px) */}
           <div
             aria-hidden="true"
-            className="hidden md:flex items-center gap-2 text-left absolute -left-6 lg:-left-12 top-28 bg-white rounded-[18px] px-4 py-3 border border-[#E6ECF1] shadow-[0_16px_36px_rgba(11,27,43,0.28)] float-bob-left z-20 select-none"
+            style={{ animationPlayState: isInView ? "running" : "paused" }}
+            className="hidden lg:flex items-center gap-2 text-left absolute -left-6 lg:-left-12 top-28 bg-white rounded-[18px] px-4 py-3 border border-[#E6ECF1] shadow-[0_16px_36px_rgba(11,27,43,0.28)] float-bob-left z-20 select-none"
           >
             <span className="w-2.5 h-2.5 rounded-full bg-teal" />
             <span className="text-xs font-semibold text-navy">
@@ -80,8 +84,13 @@ export function AdvisorFeature() {
             </span>
           </div>
 
-          {/* Phone container with gentle bobbing */}
-          <div className="relative z-10 float-bob-right">
+          {/* Phone container with gentle bobbing, paused when offscreen */}
+          <div
+            role="region"
+            aria-label="Interactive academic advisor demo"
+            style={{ animationPlayState: isInView ? "running" : "paused" }}
+            className="relative z-10 float-bob-right"
+          >
             <InteractiveAdvisor scale={1.12} />
           </div>
         </div>
