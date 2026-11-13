@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+:root {
+  --navy: #142D46;
+  --navy-deep: #0F2236;
+  --ink: #0B1B2B;
+  --teal: #187F79;
+  --teal-bright: #4CC3BB;
+  --mint: #E7F1F0;
+  --tint: #F1F6F6;
+  --bg: #F6F8FA;
+  --white: #FFFFFF;
+  --border: #E2E8F0;
+  --muted: #586A7D;
+  --subtle: #8696A6;
+}
+
+@theme {
+  --color-navy: #142D46;
+  --color-navy-deep: #0F2236;
+  --color-ink: #0B1B2B;
+  --color-teal: #187F79;
+  --color-teal-bright: #4CC3BB;
+  --color-mint: #E7F1F0;
+  --color-tint: #F1F6F6;
+  --color-bg: #F6F8FA;
+  --color-white: #FFFFFF;
+  --color-border: #E2E8F0;
+  --color-muted: #586A7D;
+  --color-subtle: #8696A6;
+
+  --font-heading: var(--font-space-grotesk), sans-serif;
+  --font-body: var(--font-inter), sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-navy);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.025em;
+}
+
+/* Global prefers-reduced-motion accessibility rule */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
