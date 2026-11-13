@@ -1,6 +1,13 @@
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
-import { Hero } from "@/components/sections/Hero";
+import {
+  Hero,
+  Statement,
+  CalculatorFeature,
+  SimulatorFeature,
+  PlannerFeature,
+  AdvisorFeature,
+} from "@/components/sections";
 
 export default function Home() {
   return (
@@ -8,10 +15,11 @@ export default function Home() {
       <Nav />
       <main className="flex-1">
         <Hero />
-        <section id="calculator" aria-label="CGPA Calculator" />
-        <section id="simulator" aria-label="Goal Simulator" />
-        <section id="planner" aria-label="Semester Planner" />
-        <section id="advisor" aria-label="Course Advisor" />
+        <Statement />
+        <CalculatorFeature />
+        <SimulatorFeature />
+        <PlannerFeature />
+        <AdvisorFeature />
         <section id="download" aria-label="Download Acaddash" />
       </main>
       <Footer />

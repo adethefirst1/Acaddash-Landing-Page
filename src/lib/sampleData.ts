@@ -33,11 +33,14 @@ export const SAMPLE_STUDENT = {
   cumulativeGpa: "4.25",
   maxGpa: "5.00",
   degreeClass: "Second Class Upper",
+  priorUnits: 85,
+  priorPoints: 358,
   completedUnits: 96,
+  completedPoints: 408,
   totalUnits: 150,
   completedSemesters: 5,
   targetGpa: "4.40",
-  currentSemesterUnits: 21,
+  currentSemesterUnits: 11,
   currentSemesterCourses: [
     { code: "CSC 301", title: "Data Structures", units: 3, grade: "A" },
     { code: "CSC 305", title: "Operating Systems", units: 3, grade: "B" },
@@ -50,7 +53,12 @@ export const SAMPLE_SIMULATOR = {
   semesterLabel: "Semester 6",
   tag: "Draft",
   targetGpa: "4.40",
-  projectedGpaB: "4.34",
+  baseUnits: 96,
+  basePoints: 408,
+  fixedOtherUnits: 12,
+  fixedOtherPoints: 57,
+  totalDegreeUnits: 150,
+  projectedGpaB: "4.33",
   projectedGpaC: "4.31",
   status: "Within reach",
   courses: [
@@ -58,7 +66,7 @@ export const SAMPLE_SIMULATOR = {
     { code: "CSC 405", title: "AI", units: 3, defaultGrade: "B", alternateGrade: "C" },
     { code: "MTH 405", title: "Optimisation", units: 3, defaultGrade: "A" },
   ] as SimulatorCourse[],
-  hint: "Needs a B or better in CSC 405 to stay on track for 4.40",
+  hint: "You'd need about 4.64 average across your last 33 units to reach 4.40.",
 };
 
 export const SAMPLE_PLANNER = {

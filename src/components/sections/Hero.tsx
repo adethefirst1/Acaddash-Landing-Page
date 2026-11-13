@@ -95,7 +95,7 @@ export function Hero() {
           variants={phoneRiseVariant}
           className="relative max-w-[340px] md:max-w-[420px] mx-auto flex justify-center"
         >
-          {/* Desktop Floating Card Left: Projected CGPA 4.34 */}
+          {/* Desktop Floating Card Left: Projected CGPA 4.33 */}
           <div
             aria-hidden="true"
             className="hidden md:flex flex-col text-left absolute -left-28 lg:-left-36 top-16 bg-white rounded-[18px] px-4 py-3 border border-[#E6ECF1] shadow-[0_16px_36px_rgba(20,45,70,0.08)] float-bob-left z-20 select-none min-w-[155px]"
@@ -104,10 +104,10 @@ export function Hero() {
               Projected CGPA
             </span>
             <span className="font-heading font-bold text-[24px] text-navy leading-tight my-0.5">
-              4.34
+              4.33
             </span>
             <span className="text-[11px] font-semibold text-teal flex items-center gap-1">
-              ▲ 0.09 this semester
+              ▲ 0.08 this semester
             </span>
           </div>
 
@@ -146,3 +146,4 @@ export function Hero() {
     </section>
   );
 }
+

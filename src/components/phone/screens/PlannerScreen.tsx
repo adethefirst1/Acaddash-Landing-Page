@@ -1,8 +1,18 @@
+"use client";
+
+import React from "react";
+import { motion, useReducedMotion } from "motion/react";
 import { SAMPLE_PLANNER } from "@/lib/sampleData";
 
-export function PlannerScreen() {
+export interface PlannerScreenProps {
+  animateIn?: boolean;
+}
+
+export function PlannerScreen({ animateIn = true }: PlannerScreenProps) {
   const { title, tag, completedUnits, totalUnits, status, years } =
     SAMPLE_PLANNER;
+
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <div className="flex flex-col gap-2.5">
@@ -48,7 +58,10 @@ export function PlannerScreen() {
               strokeLinecap="round"
               fill="none"
               strokeDasharray="175.93"
-              className="progress-ring-animate"
+              className={animateIn ? "progress-ring-animate" : ""}
+              style={{
+                strokeDashoffset: animateIn ? undefined : "63.33",
+              }}
             />
           </svg>
         </div>
@@ -80,9 +93,29 @@ export function PlannerScreen() {
           {/* Vertical connecting line */}
           <div className="absolute left-[9px] top-2 bottom-3 w-[2px] bg-[#E6ECF1] -z-0" />
 
-          {years.map((step) => {
+          {years.map((step, idx) => {
+            const itemDelay = idx * 0.15;
+
             return (
-              <div key={step.year} className="flex items-start gap-3 relative z-10">
+              <motion.div
+                key={step.year}
+                initial={
+                  shouldReduceMotion || !animateIn
+                    ? { opacity: 1, x: 0 }
+                    : { opacity: 0, x: -8 }
+                }
+                animate={
+                  animateIn
+                    ? { opacity: 1, x: 0 }
+                    : { opacity: 1, x: 0 }
+                }
+                transition={
+                  shouldReduceMotion
+                    ? { duration: 0 }
+                    : { duration: 0.45, delay: itemDelay, ease: "easeOut" }
+                }
+                className="flex items-start gap-3 relative z-10"
+              >
                 {/* Step indicator */}
                 {step.status === "done" && (
                   <div className="w-5 h-5 rounded-full bg-teal text-white flex items-center justify-center shrink-0 shadow-xs">
@@ -120,7 +153,7 @@ export function PlannerScreen() {
                     {step.gpaText} · {step.unitsText}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

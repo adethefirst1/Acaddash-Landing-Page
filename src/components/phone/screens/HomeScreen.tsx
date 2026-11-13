@@ -1,18 +1,28 @@
-import { SAMPLE_STUDENT } from "@/lib/sampleData";
+"use client";
 
-export function HomeScreen() {
-  const {
-    name,
-    avatarLetter,
-    cumulativeGpa,
-    maxGpa,
-    degreeClass,
-    completedUnits,
-    completedSemesters,
-    targetGpa,
-    currentSemesterUnits,
-    currentSemesterCourses,
-  } = SAMPLE_STUDENT;
+import { SAMPLE_STUDENT, Course } from "@/lib/sampleData";
+
+export interface HomeScreenProps {
+  courses?: Course[];
+  displayCgpa?: string;
+  displayDegreeClass?: string;
+  onGradeCycle?: (code: string) => void;
+  isInteractive?: boolean;
+}
+
+export function HomeScreen({
+  courses,
+  displayCgpa,
+  displayDegreeClass,
+  onGradeCycle,
+  isInteractive = false,
+}: HomeScreenProps) {
+  const student = SAMPLE_STUDENT;
+  const currentCourses = courses ?? student.currentSemesterCourses;
+  const currentCgpa = displayCgpa ?? student.cumulativeGpa;
+  const currentDegreeClass = displayDegreeClass ?? student.degreeClass;
+
+  const totalCurrentUnits = currentCourses.reduce((acc, c) => acc + c.units, 0);
 
   return (
     <div className="flex flex-col gap-2.5">
@@ -23,11 +33,11 @@ export function HomeScreen() {
             Good morning,
           </span>
           <span className="font-heading font-bold text-[20px] text-navy tracking-tight leading-tight">
-            {name}
+            {student.name}
           </span>
         </div>
         <div className="w-7 h-7 rounded-full bg-teal text-white font-heading font-bold text-[12px] flex items-center justify-center shadow-xs">
-          {avatarLetter}
+          {student.avatarLetter}
         </div>
       </div>
 
@@ -38,17 +48,17 @@ export function HomeScreen() {
         </span>
 
         <div className="flex items-baseline gap-1 my-0.5">
-          <span className="font-heading font-bold text-[40px] text-navy tracking-tight leading-none">
-            {cumulativeGpa}
+          <span className="font-heading font-bold text-[40px] text-navy tracking-tight leading-none tabular-nums">
+            {currentCgpa}
           </span>
           <span className="text-[13px] text-muted font-normal">
-            / {maxGpa}
+            / {student.maxGpa}
           </span>
         </div>
 
         <div>
-          <span className="inline-block px-2 py-0.5 rounded-full bg-mint text-teal font-medium text-[10px]">
-            {degreeClass}
+          <span className="inline-block px-2 py-0.5 rounded-full bg-mint text-teal font-medium text-[10px] transition-colors duration-200">
+            {currentDegreeClass}
           </span>
         </div>
 
@@ -59,19 +69,19 @@ export function HomeScreen() {
         <div className="grid grid-cols-3 text-center">
           <div>
             <div className="font-heading font-bold text-[14px] text-navy leading-tight">
-              {completedUnits}
+              {student.completedUnits}
             </div>
             <div className="text-[10px] text-muted">Units</div>
           </div>
           <div className="border-x border-[#E6ECF1]">
             <div className="font-heading font-bold text-[14px] text-navy leading-tight">
-              {completedSemesters}
+              {student.completedSemesters}
             </div>
             <div className="text-[10px] text-muted">Semesters</div>
           </div>
           <div>
             <div className="font-heading font-bold text-[14px] text-navy leading-tight">
-              {targetGpa}
+              {student.targetGpa}
             </div>
             <div className="text-[10px] text-muted">Target</div>
           </div>
@@ -84,16 +94,16 @@ export function HomeScreen() {
           This semester
         </span>
         <span className="text-[10px] text-muted">
-          {currentSemesterUnits} units
+          {totalCurrentUnits} units
         </span>
       </div>
 
       {/* Courses List */}
       <div className="flex flex-col gap-1.5">
-        {currentSemesterCourses.map((c) => (
+        {currentCourses.map((c) => (
           <div
             key={c.code}
-            className="bg-white rounded-[14px] border border-[#E6ECF1] px-3 py-2 flex items-center justify-between shadow-xs"
+            className="bg-white rounded-[14px] border border-[#E6ECF1] px-3 py-2 flex items-center justify-between shadow-xs transition-colors"
           >
             <div>
               <div className="font-heading font-bold text-[12px] text-navy leading-tight">
@@ -103,9 +113,19 @@ export function HomeScreen() {
                 {c.title} · {c.units} units
               </div>
             </div>
-            <div className="w-6 h-6 rounded-[6px] bg-navy text-white font-heading font-bold text-[11px] flex items-center justify-center">
+            <button
+              type="button"
+              disabled={!isInteractive}
+              onClick={() => onGradeCycle?.(c.code)}
+              className={`w-6 h-6 rounded-[6px] bg-navy text-white font-heading font-bold text-[11px] flex items-center justify-center transition-all ${
+                isInteractive
+                  ? "cursor-pointer hover:scale-105 active:scale-95 hover:bg-navy-deep ring-2 ring-transparent hover:ring-teal/30"
+                  : "cursor-default"
+              }`}
+              title={isInteractive ? "Click to cycle grade" : undefined}
+            >
               {c.grade}
-            </div>
+            </button>
           </div>
         ))}
       </div>
