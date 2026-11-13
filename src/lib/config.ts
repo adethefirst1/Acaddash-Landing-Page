@@ -17,3 +17,4 @@ export const FOOTER_LINKS: NavItem[] = [
   { label: "Terms", href: "#terms" },
   { label: "Contact", href: "mailto:support@acaddash.com" },
 ];
+

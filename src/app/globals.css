@@ -55,6 +55,135 @@ h6 {
   letter-spacing: -0.025em;
 }
 
+/* Simulator synchronized toggle animations (pure CSS, no JS) */
+@keyframes toggleGpaB {
+  0%,
+  45% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50%,
+  95% {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes toggleGpaC {
+  0%,
+  45% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  50%,
+  95% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+@keyframes chipActiveB {
+  0%,
+  45% {
+    background-color: #142D46;
+    color: #ffffff;
+  }
+  50%,
+  95% {
+    background-color: transparent;
+    color: #586A7D;
+  }
+  100% {
+    background-color: #142D46;
+    color: #ffffff;
+  }
+}
+
+@keyframes chipActiveC {
+  0%,
+  45% {
+    background-color: transparent;
+    color: #586A7D;
+  }
+  50%,
+  95% {
+    background-color: #142D46;
+    color: #ffffff;
+  }
+  100% {
+    background-color: transparent;
+    color: #586A7D;
+  }
+}
+
+.sim-toggle-b {
+  animation: toggleGpaB 6s ease-in-out infinite;
+}
+
+.sim-toggle-c {
+  animation: toggleGpaC 6s ease-in-out infinite;
+}
+
+.sim-chip-b {
+  animation: chipActiveB 6s ease-in-out infinite;
+}
+
+.sim-chip-c {
+  animation: chipActiveC 6s ease-in-out infinite;
+}
+
+/* Planner Progress Ring animation */
+@keyframes drawProgressRing {
+  from {
+    stroke-dashoffset: 175.93;
+  }
+  to {
+    stroke-dashoffset: 63.33;
+  }
+}
+
+.progress-ring-animate {
+  animation: drawProgressRing 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Hero floating cards gentle bobbing */
+@keyframes floatBobLeft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes floatBobRight {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+.float-bob-left {
+  animation: floatBobLeft 6s ease-in-out infinite;
+}
+
+.float-bob-right {
+  animation: floatBobRight 6s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
 /* Global prefers-reduced-motion accessibility rule */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -64,5 +193,33 @@ h6 {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .sim-toggle-b {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .sim-toggle-c {
+    display: none !important;
+  }
+
+  .sim-chip-b {
+    background-color: #142D46 !important;
+    color: #ffffff !important;
+  }
+
+  .sim-chip-c {
+    background-color: transparent !important;
+    color: #586A7D !important;
+  }
+
+  .progress-ring-animate {
+    stroke-dashoffset: 63.33 !important;
+  }
+
+  .float-bob-left,
+  .float-bob-right {
+    transform: none !important;
   }
 }
