@@ -22,5 +22,7 @@ export const NAV_LINKS: NavItem[] = [
 export const FOOTER_LINKS: NavItem[] = [
   { label: "Privacy", href: "/privacy" },
   { label: "Terms", href: "/terms" },
+  { label: "Cookies", href: "/cookies" },
+  { label: "Delete account", href: "/delete-account" },
   { label: "Contact", href: "/contact" },
 ];

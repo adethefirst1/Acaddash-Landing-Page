@@ -24,6 +24,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.3,
     },
     {
+      url: `${SITE_URL}/cookies`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.3,
+    },
+    {
+      url: `${SITE_URL}/delete-account`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.3,
+    },
+    {
       url: `${SITE_URL}/contact`,
       lastModified,
       changeFrequency: "monthly",
