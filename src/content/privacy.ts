@@ -4,7 +4,7 @@ export const PRIVACY_CONTENT: LegalPageContent = {
   pageTitle: "Privacy Policy",
   businessHeader: "ACADDASH TECHNOLOGIES",
   metadataLine:
-    "Acaddash Technologies | CAC BN 10001799 | 72, Samuel Ekundayo Road, Badagry, Lagos State, Nigeria | privacy@acaddash.ng | https://acaddash.ng",
+    "Acaddash Technologies | CAC BN 10001799 | privacy@acaddash.ng | https://acaddash.ng",
   lastUpdated: "14 November 2026",
   toc: [
     { id: "introduction", label: "1. Introduction" },
@@ -97,7 +97,7 @@ export const PRIVACY_CONTENT: LegalPageContent = {
       id: "changes-and-contact",
       title: "11. Changes and Contact",
       content: [
-        "Updates will be published with a revised date. Privacy requests: privacy@acaddash.ng. Business address: 72, Samuel Ekundayo Road, Badagry, Lagos State, Nigeria.",
+        "Updates will be published with a revised date. Privacy requests: privacy@acaddash.ng.",
       ],
     },
   ],
